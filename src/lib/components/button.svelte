@@ -16,14 +16,14 @@
 
   const styles: Record<Variant, string> = {
     primary: 'bg-primary text-primary-foreground hover:bg-primary/90',
-    secondary: 'border border-line bg-card text-fg hover:bg-muted',
-    outline: 'border border-line bg-transparent text-fg hover:bg-muted',
+    secondary: 'bg-muted text-fg hover:bg-muted/70',
+    outline: 'border border-line bg-background text-fg hover:bg-muted',
     ghost: 'text-muted-foreground hover:bg-muted hover:text-fg',
   }
 
   const classes = $derived(
     cn(
-      'inline-flex h-9 items-center justify-center gap-1.5 rounded-md px-3 text-[13px] font-medium transition-[background-color,color,scale] duration-150 active:scale-[0.96] disabled:pointer-events-none disabled:opacity-50 motion-reduce:active:scale-100',
+      'inline-flex h-9 items-center justify-center gap-1.5 rounded-full px-4 text-sm font-medium transition-[background-color,color,scale] duration-150 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50 motion-reduce:active:scale-100',
       styles[variant],
       className,
     ),

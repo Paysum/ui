@@ -16,11 +16,10 @@
   <title>Dashboard · Paysum UI</title>
 </svelte:head>
 
-<div class="flex flex-wrap items-end justify-between gap-3">
-  <div>
-    <p class="text-[13px] text-muted-foreground">Product</p>
-    <h1 class="mt-1 text-2xl font-medium tracking-tight">Dashboard</h1>
-    <p class="mt-2 max-w-xl text-[15px] leading-6 text-muted-foreground">
+<div class="flex flex-wrap items-end justify-between gap-4">
+  <div class="max-w-xl">
+    <h1 class="text-4xl font-semibold tracking-tight">Dashboard</h1>
+    <p class="mt-3 text-base leading-7 text-muted-foreground">
       Overview numbers and a short order list. The live dashboard uses these surfaces.
     </p>
   </div>

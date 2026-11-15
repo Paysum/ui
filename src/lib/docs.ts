@@ -4,6 +4,7 @@ export type Doc = {
   description: string
   svelte: string
   react: string
+  usage: { svelte: string; react: string }
 }
 
 const svelteFiles = import.meta.glob('./components/*.svelte', {
@@ -27,30 +28,94 @@ export const docs: Doc[] = [
   {
     slug: 'button',
     title: 'Button',
-    description: 'The action used on checkout, the dashboard, and store themes.',
+    description: 'An action for checkout, the dashboard, and store themes.',
     svelte: source(svelteFiles, 'button'),
     react: source(reactFiles, 'button'),
+    usage: {
+      svelte: `<script>
+  import Button from './button.svelte'
+</script>
+
+<Button>Pay now</Button>
+<Button variant="outline">Cancel</Button>`,
+      react: `import { Button } from './button'
+
+export function Pay() {
+  return (
+    <>
+      <Button>Pay now</Button>
+      <Button variant="outline">Cancel</Button>
+    </>
+  )
+}`,
+    },
   },
   {
     slug: 'input',
     title: 'Input',
-    description: 'A text field with the same height as the button.',
+    description: 'A text field at the same height as the button.',
     svelte: source(svelteFiles, 'input'),
     react: source(reactFiles, 'input'),
+    usage: {
+      svelte: `<script>
+  import Input from './input.svelte'
+
+  let email = $state('')
+</script>
+
+<Input type="email" placeholder="you@example.com" bind:value={email} />`,
+      react: `import { useState } from 'react'
+import { Input } from './input'
+
+export function Email() {
+  const [email, setEmail] = useState('')
+  return <Input type="email" value={email} onChange={(event) => setEmail(event.target.value)} />
+}`,
+    },
   },
   {
     slug: 'card',
     title: 'Card',
-    description: 'Hairline surface for dashboard panels and theme previews.',
+    description: 'A hairline surface for a panel, a product, or a preview.',
     svelte: source(svelteFiles, 'card'),
     react: source(reactFiles, 'card'),
+    usage: {
+      svelte: `<script>
+  import Card from './card.svelte'
+</script>
+
+<Card class="p-4">
+  <p>Creative toolkit</p>
+</Card>`,
+      react: `import { Card } from './card'
+
+export function Product() {
+  return (
+    <Card className="p-4">
+      <p>Creative toolkit</p>
+    </Card>
+  )
+}`,
+    },
   },
   {
     slug: 'badge',
     title: 'Badge',
-    description: 'A short status, such as paid or draft.',
+    description: 'A short status, such as paid, pending, or draft.',
     svelte: source(svelteFiles, 'badge'),
     react: source(reactFiles, 'badge'),
+    usage: {
+      svelte: `<script>
+  import Badge from './badge.svelte'
+</script>
+
+<Badge tone="success">Paid</Badge>`,
+      react: `import { Badge } from './badge'
+
+export function Status() {
+  return <Badge tone="success">Paid</Badge>
+}`,
+    },
   },
   {
     slug: 'stat',
@@ -58,6 +123,18 @@ export const docs: Doc[] = [
     description: 'A labeled number for the dashboard overview.',
     svelte: source(svelteFiles, 'stat'),
     react: source(reactFiles, 'stat'),
+    usage: {
+      svelte: `<script>
+  import Stat from './stat.svelte'
+</script>
+
+<Stat label="Orders" value="186" hint="Last 30 days" />`,
+      react: `import { Stat } from './stat'
+
+export function Orders() {
+  return <Stat label="Orders" value="186" hint="Last 30 days" />
+}`,
+    },
   },
 ]
 

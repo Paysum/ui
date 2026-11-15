@@ -1,5 +1,9 @@
 <script lang="ts">
-  let { svelte, react }: { svelte: string; react: string } = $props()
+  let {
+    svelte,
+    react,
+    onclose,
+  }: { svelte: string; react: string; onclose?: () => void } = $props()
   let lang = $state<'svelte' | 'react'>('svelte')
   let copied = $state(false)
   const code = $derived(lang === 'svelte' ? svelte : react)
@@ -11,24 +15,29 @@
   }
 </script>
 
-<div class="overflow-hidden rounded-xl border border-line bg-card">
-  <div class="flex items-center justify-between border-b border-line px-3 py-2">
-    <div class="flex gap-1" role="tablist" aria-label="Component source">
+<div>
+  <div class="flex items-center gap-1 border-b border-line px-3 py-2">
+    <div class="flex gap-1" role="tablist" aria-label="Source language">
       {#each ['svelte', 'react'] as item (item)}
         <button
           type="button"
           role="tab"
           aria-selected={lang === item}
-          class="h-7 rounded-md px-2.5 text-[13px] font-medium text-muted-foreground aria-selected:bg-muted aria-selected:text-fg"
+          class="h-8 rounded-md px-2.5 text-sm text-muted-foreground aria-selected:bg-background aria-selected:text-fg aria-selected:shadow-sm"
           onclick={() => (lang = item as 'svelte' | 'react')}
         >
           {item === 'svelte' ? 'Svelte' : 'React'}
         </button>
       {/each}
     </div>
-    <button type="button" class="text-[13px] text-muted-foreground hover:text-fg" onclick={copy}>
+    <button type="button" class="ml-auto h-8 rounded-md px-2.5 text-sm text-muted-foreground hover:text-fg" onclick={copy}>
       {copied ? 'Copied' : 'Copy'}
     </button>
+    {#if onclose}
+      <button type="button" class="h-8 rounded-md px-2.5 text-sm text-muted-foreground hover:text-fg" onclick={onclose}>
+        Hide
+      </button>
+    {/if}
   </div>
-  <pre class="overflow-x-auto p-4 text-[12.5px] leading-5 text-fg"><code>{code}</code></pre>
+  <pre class="max-h-96 overflow-auto p-4 font-mono text-[13px] leading-6 text-fg"><code>{code}</code></pre>
 </div>
