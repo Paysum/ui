@@ -1,16 +1,22 @@
 <script lang="ts">
   import type { HTMLInputAttributes } from 'svelte/elements'
   import { cn } from '../utils'
+  import { controlHeight } from './sizing'
 
-  let { class: className, value = $bindable(''), ...rest }: HTMLInputAttributes & { class?: string } =
-    $props()
+  let {
+    class: className,
+    type,
+    value = $bindable(),
+    ...rest
+  }: HTMLInputAttributes & { class?: string } = $props()
+
+  const classes = $derived(
+    cn(
+      'w-full min-w-0 rounded-lg border border-line-strong bg-input px-3 text-sm text-fg outline-none transition-[color,box-shadow,border-color] placeholder:text-ink-500 hover:border-line-hover focus:border-[color-mix(in_oklab,var(--ring)_60%,var(--line-strong))] focus:ring-[3px] focus:ring-[color-mix(in_oklab,var(--ring)_14%,transparent)] disabled:pointer-events-none disabled:bg-muted disabled:text-ink-400',
+      controlHeight,
+      className,
+    ),
+  )
 </script>
 
-<input
-  bind:value
-  class={cn(
-    'h-9 w-full rounded-lg border border-line bg-background px-3 text-sm text-fg outline-none transition-[border-color,box-shadow] duration-150 placeholder:text-muted-foreground focus-visible:border-fg',
-    className,
-  )}
-  {...rest}
-/>
+<input bind:value {type} data-slot="input" class={classes} {...rest} />

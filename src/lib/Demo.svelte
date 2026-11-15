@@ -1,4 +1,6 @@
 <script lang="ts">
+  import DollarSign from '@lucide/svelte/icons/dollar-sign'
+  import ShoppingBag from '@lucide/svelte/icons/shopping-bag'
   import Badge from './components/badge.svelte'
   import Button from './components/button.svelte'
   import Card from './components/card.svelte'
@@ -22,18 +24,18 @@
   </div>
 {:else if slug === 'card'}
   <Card class="w-full max-w-sm p-4">
-    <p class="text-sm font-medium">Creative toolkit</p>
-    <p class="mt-1 text-sm text-muted-foreground">$29.00 · One file</p>
+    <p class="text-sm font-medium text-fg">Creative toolkit</p>
+    <p class="mt-1 text-[13px] text-ink-500">$29.00 · One file</p>
     <Button class="mt-4">Buy</Button>
   </Card>
 {:else if slug === 'badge'}
   <div class="flex flex-wrap items-center justify-center gap-2">
-    <Badge tone="success">Paid</Badge>
-    <Badge tone="warning">Pending</Badge>
+    <Badge variant="success">Paid</Badge>
+    <Badge variant="warning">Pending</Badge>
     <Badge>Draft</Badge>
   </div>
 {:else if slug === 'stat'}
-  <div class="w-full max-w-xs">
-    <Stat label="Orders" value="186" hint="Last 30 days" />
-  </div>
+  <Card class="w-full max-w-xs">
+    <Stat icon={ShoppingBag} label="Orders" value="186" hint="Last 30 days" delta={4.2} />
+  </Card>
 {/if}

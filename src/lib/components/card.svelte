@@ -6,6 +6,10 @@
     $props()
 </script>
 
-<div class={cn('rounded-xl border border-line bg-card text-fg', className)} {...rest}>
+<div
+  data-slot="card"
+  class={cn('flex flex-col items-stretch rounded-[12px] border border-line bg-card text-card-foreground', className)}
+  {...rest}
+>
   {@render children?.()}
 </div>

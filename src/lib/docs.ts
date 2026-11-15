@@ -28,7 +28,7 @@ export const docs: Doc[] = [
   {
     slug: 'button',
     title: 'Button',
-    description: 'An action for checkout, the dashboard, and store themes.',
+    description: 'Dashboard and checkout action. Primary, secondary, outline, ghost.',
     svelte: source(svelteFiles, 'button'),
     react: source(reactFiles, 'button'),
     usage: {
@@ -37,14 +37,14 @@ export const docs: Doc[] = [
 </script>
 
 <Button>Pay now</Button>
-<Button variant="outline">Cancel</Button>`,
+<Button variant="secondary">Cancel</Button>`,
       react: `import { Button } from './button'
 
 export function Pay() {
   return (
     <>
       <Button>Pay now</Button>
-      <Button variant="outline">Cancel</Button>
+      <Button variant="secondary">Cancel</Button>
     </>
   )
 }`,
@@ -101,7 +101,7 @@ export function Product() {
   {
     slug: 'badge',
     title: 'Badge',
-    description: 'A short status, such as paid, pending, or draft.',
+    description: 'Status on an order, a product, or a table row.',
     svelte: source(svelteFiles, 'badge'),
     react: source(reactFiles, 'badge'),
     usage: {
@@ -109,11 +109,11 @@ export function Product() {
   import Badge from './badge.svelte'
 </script>
 
-<Badge tone="success">Paid</Badge>`,
+<Badge variant="success">Paid</Badge>`,
       react: `import { Badge } from './badge'
 
 export function Status() {
-  return <Badge tone="success">Paid</Badge>
+  return <Badge variant="success">Paid</Badge>
 }`,
     },
   },
@@ -125,10 +125,11 @@ export function Status() {
     react: source(reactFiles, 'stat'),
     usage: {
       svelte: `<script>
+  import ShoppingBag from '@lucide/svelte/icons/shopping-bag'
   import Stat from './stat.svelte'
 </script>
 
-<Stat label="Orders" value="186" hint="Last 30 days" />`,
+<Stat icon={ShoppingBag} label="Orders" value="186" hint="Last 30 days" />`,
       react: `import { Stat } from './stat'
 
 export function Orders() {

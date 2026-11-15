@@ -1,29 +1,16 @@
 <script lang="ts">
   import type { HTMLAttributes } from 'svelte/elements'
   import { cn } from '../utils'
+  import { badgeVariants, type BadgeVariant } from './badge-variants'
 
-  type Tone = 'neutral' | 'success' | 'warning'
   let {
-    tone = 'neutral',
+    variant,
     class: className,
     children,
     ...rest
-  }: HTMLAttributes<HTMLSpanElement> & { tone?: Tone; class?: string } = $props()
-
-  const styles: Record<Tone, string> = {
-    neutral: 'bg-muted text-muted-foreground',
-    success: 'bg-emerald-50 text-emerald-700',
-    warning: 'bg-amber-50 text-amber-800',
-  }
+  }: HTMLAttributes<HTMLSpanElement> & { variant?: BadgeVariant; class?: string } = $props()
 </script>
 
-<span
-  class={cn(
-    'inline-flex h-6 items-center rounded-full px-2.5 text-xs font-medium',
-    styles[tone],
-    className,
-  )}
-  {...rest}
->
+<span data-slot="badge" class={cn(badgeVariants({ variant }), className)} {...rest}>
   {@render children?.()}
 </span>

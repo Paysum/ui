@@ -1,4 +1,7 @@
 <script lang="ts">
+  import DollarSign from '@lucide/svelte/icons/dollar-sign'
+  import ShoppingBag from '@lucide/svelte/icons/shopping-bag'
+  import Users from '@lucide/svelte/icons/users'
   import Badge from '$lib/components/badge.svelte'
   import Button from '$lib/components/button.svelte'
   import Card from '$lib/components/card.svelte'
@@ -27,9 +30,9 @@
 </div>
 
 <div class="mt-6 grid gap-3 sm:grid-cols-3">
-  <Stat label="Revenue" value="$12,480" hint="Last 30 days" />
-  <Stat label="Orders" value="186" hint="Paid" />
-  <Stat label="Customers" value="94" hint="With an order" />
+  <Card><Stat icon={DollarSign} label="Revenue" value="$12,480" hint="Last 30 days" /></Card>
+  <Card><Stat icon={ShoppingBag} label="Orders" value="186" hint="Paid" /></Card>
+  <Card><Stat icon={Users} label="Customers" value="94" hint="With an order" /></Card>
 </div>
 
 <Card class="mt-4 overflow-hidden">
@@ -53,7 +56,7 @@
             <div class="text-xs text-muted-foreground">{order.item}</div>
           </td>
           <td class="px-4 py-2.5">
-            <Badge tone={order.status === 'Paid' ? 'success' : 'warning'}>{order.status}</Badge>
+            <Badge variant={order.status === 'Paid' ? 'success' : 'warning'}>{order.status}</Badge>
           </td>
           <td class="px-4 py-2.5 text-right tabular-nums">{order.amount}</td>
         </tr>

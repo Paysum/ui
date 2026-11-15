@@ -1,24 +1,24 @@
 import type { HTMLAttributes } from 'react'
 import { cn } from './utils'
 
-type Tone = 'neutral' | 'success' | 'warning'
+type Variant = 'neutral' | 'success' | 'warning'
 
-const styles: Record<Tone, string> = {
-  neutral: 'bg-muted text-muted-foreground',
-  success: 'bg-emerald-50 text-emerald-700',
-  warning: 'bg-amber-50 text-amber-800',
+const styles: Record<Variant, string> = {
+  neutral: 'border-line bg-surface-overlay text-ink-300',
+  success: 'border-line bg-transparent text-success',
+  warning: 'border-line bg-transparent text-warning',
 }
 
 export function Badge({
-  tone = 'neutral',
+  variant = 'neutral',
   className,
   ...props
-}: HTMLAttributes<HTMLSpanElement> & { tone?: Tone }) {
+}: HTMLAttributes<HTMLSpanElement> & { variant?: Variant }) {
   return (
     <span
       className={cn(
-        'inline-flex h-6 items-center rounded-full px-2.5 text-xs font-medium',
-        styles[tone],
+        'inline-flex h-5 items-center rounded-md border px-1.5 text-xs font-medium leading-none',
+        styles[variant],
         className,
       )}
       {...props}
